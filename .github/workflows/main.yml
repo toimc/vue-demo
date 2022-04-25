@@ -46,3 +46,14 @@ jobs:
         with:
           branch: gh-pages # The branch the action should deploy to.
           folder: dist # The folder the action should deploy.
+          
+      - name: rsync deployments
+        uses: burnett01/rsync-deployments@5.2
+        with:
+          switches: -avzr --delete
+          path: dist/
+          remote_path: /home/demo-site
+          remote_host: hw.prod.toimc.com
+          remote_port: 8822
+          remote_user: root
+          remote_key: ${{ secrets.DEPLOY_KEY }}
