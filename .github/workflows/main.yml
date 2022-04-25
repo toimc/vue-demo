@@ -1,5 +1,10 @@
 name: Build and Deploy
-on: [push]
+on:
+  push:
+    branches: [main]
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
 jobs:
   build-and-deploy:
     concurrency: ci-${{ github.ref }} # Recommended if you intend to make multiple deployments in quick succession.
@@ -32,7 +37,8 @@ jobs:
         if: steps.pnpm-cache.outputs.cache-hit != 'true'
         run: pnpm i
 
-      - run: |
+      - name: Build Project
+        run: |
           pnpm run build
 
       - name: Deploy 🚀
