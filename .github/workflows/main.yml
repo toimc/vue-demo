@@ -8,7 +8,8 @@ jobs:
       - name: Checkout 🛎️
         uses: actions/checkout@v3
 
-      - uses: pnpm/action-setup@646cdf48217256a3d0b80361c5a50727664284f2
+      - name: use pnpm
+        uses: pnpm/action-setup@646cdf48217256a3d0b80361c5a50727664284f2
         with:
           version: 6.10.0
       - uses: actions/setup-node@v3
